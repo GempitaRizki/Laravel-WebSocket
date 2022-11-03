@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Gempita;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('kirim', function(Request $request){
+    $request->validate([
+        'name' => 'required',
+        'message'=>'required',
+
+    ]);
+
+    Gempita::dispatch($message);
+})
 
 
