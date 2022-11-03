@@ -2,6 +2,7 @@
 
 use App\Events\Gempita;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,16 @@ Route::get('/', function () {
 Route::post('kirim', function(Request $request){
     $request->validate([
         'name' => 'required',
-        'message'=>'required',
+        'message'=>'required'
 
     ]);
 
+    $message = [
+        'name'=>$request->name,
+        'message'=>$request->message,
+    ];
+
     Gempita::dispatch($message);
-})
+});
 
 
