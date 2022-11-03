@@ -72,7 +72,12 @@
                 }
             });
 
-            
+            let channel = Echo.channel('channel-chat')
+            channel.listen('Gempita', function(data) {
+                $('data-message')
+                .append('<stong> $(data.message.name) </stong>:$(data.message.message)<br>');
+            })
+
         })
     </script>
   </body>
